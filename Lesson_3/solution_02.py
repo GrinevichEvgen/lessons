@@ -1,3 +1,6 @@
-spisok = [3,4.5,89,True]
-str=spisok
-print(str)
+arr = ['a', 'b', 'c', 'd']
+str = ''
+for i in range(len(arr)):
+    str += arr[i]
+reserved = ''.join(reversed(str))
+print(reserved)
