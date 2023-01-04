@@ -8,7 +8,7 @@ for index, lst in dict.items():
         if current_simbol.isnumeric():
             lst.append(current_simbol)
 
-         else:
+        else:
             break
             print(my_dict)
 

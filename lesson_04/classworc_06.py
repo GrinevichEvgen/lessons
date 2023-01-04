@@ -7,7 +7,7 @@ for current in range(n, m+1):
             is_primary = False
             break
 
-        if is_primary:
-        primary_count+=1
+if is_primary:
+           primary_count+=1
         print(current)
 
