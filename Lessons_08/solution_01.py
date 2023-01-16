@@ -9,12 +9,11 @@ class Car:
     make = None
     model = None     #атрибуты класса
     year = None
-    speed = None
+    speed = 0
 
-if __name__ == "__main__":
 
-  #методы
-    def __init__(self, make , model, year, speed):
+ #методы
+    def __init__(self, make, model, year, speed):
         self.make = make
         self.model = model
         self.year = year
