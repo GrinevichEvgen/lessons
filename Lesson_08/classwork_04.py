@@ -5,8 +5,8 @@
 
 
 
-from Lessons_08.library.cat import Cat
-from Lessons_08.library.dog import Dog
+from Lesson_08.library.cat import Cat
+from Lesson_08.library.dog import Dog
 
 
 if __name__ == "__main__":

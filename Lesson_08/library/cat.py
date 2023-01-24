@@ -1,4 +1,4 @@
-from Lessons_08.library.animal import Animal
+from Lesson_08.library.animal import Animal
 
 
 class Cat(Animal):
