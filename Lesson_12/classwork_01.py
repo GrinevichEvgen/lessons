@@ -22,6 +22,6 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    user = User(email="test@test.com", password="password")
-    session.add(user)
-    session.commit()
+    # user = User(email="test@test.com", password="password")
+    # session.add(user)
+    # session.commit()

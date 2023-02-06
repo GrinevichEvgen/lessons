@@ -52,5 +52,7 @@ class Product(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     price = Column(Float)
+    count = Column(Integer)
+    comment = Column(String)
 
     purchases = relationship("Purchase", back_populates="product")
