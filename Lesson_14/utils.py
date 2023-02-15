@@ -1,6 +1,7 @@
+import email
+
 from sqlalchemy.orm import sessionmaker
 from Lesson_13.models import Base
-from Lesson_13.models import User
 from Lesson_13.models import User, Product, Purchase, Profile, Address
 
 
@@ -62,3 +63,7 @@ def search_product_by_user(session,user_id):
     user_id = session.query(User.id).filter(User.email == email)
     result = session.query(Purchase).filter(Purchase.user_id == user_id).first()
     return result
+
+def get_users(session):
+    users = session.query(User).all()
+    return [u.as_dict() for u in users]
