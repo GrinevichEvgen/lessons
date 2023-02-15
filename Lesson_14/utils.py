@@ -1,8 +1,8 @@
 import email
 
 from sqlalchemy.orm import sessionmaker
-from Lesson_13.models import Base
-from Lesson_13.models import User, Product, Purchase, Profile, Address
+from Lesson_14.models import Base
+from Lesson_14.models import User, Product, Purchase, Profile, Address
 
 
 
