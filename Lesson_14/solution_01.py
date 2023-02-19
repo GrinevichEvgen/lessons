@@ -4,10 +4,10 @@
 
 
 import logging
-
 from flask import Flask, request
 from sqlalchemy import create_engine
-from Lesson_14.utils import create_tables,get_users, create_user
+from Lesson_14.utils import create_tables, get_users, create_user
+from Lesson_14.models import User, Product, Purchase, Profile, Address
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -29,6 +29,7 @@ def users_get():
 def users_post():
     user = create_user(app.session, request.form.get("email"), request.form.get("password"))
     return {"user_id": user.id}
+
 
 
 if __name__ == "__main__":
