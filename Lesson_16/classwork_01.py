@@ -14,7 +14,6 @@ DB_PASSWORD = "evgen"
 DB_NAME = "evgen"
 DB_ECHO = True
 
-
 if __name__ == "__main__":
     engine = create_engine(f"postgresql://{DB_USER}:{DB_PASSWORD}@localhost/{DB_NAME}")
     if not database_exists(engine.url):
@@ -31,10 +30,10 @@ def index():
             loger.info(f'{response}')
     elif request.method == "POST":
         utils1.create_user(session=session,
-                          email=request.form.to_dict()['email'],
-                          password=request.form.to_dict()['password'],
-                          phone=request.form.to_dict()['phone'],
-                          age=int(request.form.to_dict()['age']))
+                           email=request.form.to_dict()['email'],
+                           password=request.form.to_dict()['password'],
+                           phone=request.form.to_dict()['phone'],
+                           age=int(request.form.to_dict()['age']))
     return 'homework'
 
 
