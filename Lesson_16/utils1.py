@@ -7,6 +7,7 @@ from models1 import User, Profile, Address, Product, Purchase
 def create_tables(engine):
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
+
     return Session()
 
 
@@ -36,7 +37,11 @@ def update_address(session, old_address: str, old_city: str, new_address: str, n
                                        Address.user_id == user_id)).update({'city': f'{new_city}',
                                                                             'address': f'{new_address}'})
     session.commit()
-
+def create_product(session, name, price, count, comment):
+    product = Product(name=name, price=price, count=count, comment=comment)
+    session.add(product)
+    session.commit()
+    return product
 
 def add_product(session, name: str, price: float, quantity: int, comment: str):
     new_product = Product(name=name, price=price, quantity=quantity, comment=comment)

@@ -1,4 +1,5 @@
 import email
+from operator import and_
 
 from sqlalchemy.orm import sessionmaker
 from Lesson_14.models import Base
@@ -21,7 +22,17 @@ def create_user(session, email, password):
     session.commit()
     return user
 
+def add_address(session, new_address: str, new_city: str, user_id: int):
+    address = Address(city=new_city, address=new_address, user_id=user_id)
+    session.add(address)
+    session.commit()
 
+
+def update_address(session, old_address: str, old_city: str, new_address: str, new_city: str, user_id: int):
+    session.query(Address).filter(and_(Address.address == old_address, Address.city == old_city,
+                                       Address.user_id == user_id)).update({'city': f'{new_city}',
+                                                                            'address': f'{new_address}'})
+    session.commit()
 
 def create_product(session, name, price, count, comment):
     product = Product(name=name, price=price, count=count, comment=comment)
