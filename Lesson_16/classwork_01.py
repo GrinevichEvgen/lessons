@@ -1,7 +1,8 @@
 import logging
+
 from flask import Flask, request
 from sqlalchemy import create_engine
-from sqlalchemy_utils import create_database, database_exists
+
 import utils1
 
 app = Flask(__name__)
@@ -14,43 +15,48 @@ DB_PASSWORD = "evgen"
 DB_NAME = "evgen"
 DB_ECHO = True
 
-#@app.route("/", methods=["GET"])
-#def index():
-    #return 'Start page!'
+
+# @app.route("/", methods=["GET"])
+# def index():
+# return 'Start page!'
 
 @app.route("/get_users/", methods=["GET"])
 def get_users():
     response = utils1.find_user(session=app.session)
     return [user.email for user in response]
 
+
 @app.route("/add_product/", methods=["POST"])
 def add_product():
     utils1.add_product(session=app.session,
-                      name=request.form.to_dict()['name'],
-                      price=float(request.form.to_dict()['price']),
-                      quantity=int(request.form.to_dict()['quantity']),
-                      comment=request.form.to_dict()['comment'])
+                       name=request.form.to_dict()['name'],
+                       price=float(request.form.to_dict()['price']),
+                       quantity=int(request.form.to_dict()['quantity']),
+                       comment=request.form.to_dict()['comment'])
     return f'Product {request.form.to_dict()["name"]} added'
 
 
 @app.route("/add_user/", methods=["POST"])
 def add_user():
     utils1.create_user(session=app.session, email=request.form.to_dict()['email'],
-                      password=request.form.to_dict()['password'], phone=request.form.to_dict()['phone'],
-                      age=int(request.form.to_dict()['age']))
+                       password=request.form.to_dict()['password'], phone=request.form.to_dict()['phone'],
+                       age=int(request.form.to_dict()['age']))
     return f'User {request.form.to_dict()["email"]} added'
+
 
 @app.route("/get_products/", methods=["GET"])
 def get_product():
     response = utils1.read_products(session=app.session)
     return [product.name for product in response]
 
+
 @app.route("/update_product/", methods=["POST"])
 def update_product():
     utils1.update_product(session=app.session, id_prod=int(request.form.to_dict()['id_prod']),
-                         name=request.form.to_dict()['name'], price=float(request.form.to_dict()['price']),
-                         quantity=int(request.form.to_dict()['quantity']), comment=request.form.to_dict()['comment'])
+                          name=request.form.to_dict()['name'], price=float(request.form.to_dict()['price']),
+                          quantity=int(request.form.to_dict()['quantity']), comment=request.form.to_dict()['comment'])
     return f'Product {request.form.to_dict()["name"]} updated.'
+
 
 @app.route("/delete_product/", methods=["POST"])
 def delete_product():
@@ -61,8 +67,8 @@ def delete_product():
 @app.route("/add_purchase/", methods=["POST"])
 def add_purchase():
     utils1.add_purchase(session=app.session, user_id=int(request.form.to_dict()['user_id']),
-                       prod_id=int(request.form.to_dict()['prod_id']),
-                       quantity=int(request.form.to_dict()['quantity']))
+                        prod_id=int(request.form.to_dict()['prod_id']),
+                        quantity=int(request.form.to_dict()['quantity']))
     return f'Purchase added'
 
 
@@ -79,7 +85,6 @@ def filter_by_price():
 
 
 if __name__ == "__main__":
-
     engine = create_engine(f"postgresql://{DB_USER}:{DB_PASSWORD}@localhost/{DB_NAME}")
     app.session = utils1.create_tables(engine)
     app.run()

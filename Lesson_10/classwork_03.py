@@ -1,7 +1,6 @@
 '''Создать генератор и/или итератор простой геометрической прогрессии.'''
 
 
-
 def generator(start, stop, step):
     el = start
     while el <= stop:
